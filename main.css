@@ -1,0 +1,54 @@
+
+body {
+  --bg-color: #0d0b10;
+  --fg-color: white;
+  
+  --accent-color: #1dfe1d;
+  --link-color: #00fc00;
+	--link-color: #b8bb26;
+
+  background-color: var(--bg-color);
+  color: var(--fg-color);
+
+  line-height: 1.6;
+}
+
+a {
+  color: #41cc41;
+}
+
+a:hover, a:focus {
+  color: var(--accent-color);
+}
+
+p {
+  font-family: serif;
+}
+
+header h1 {
+	transform: rotate(-2deg);
+	font-size: 4em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	transform: rotate(-1deg);
+}
+
+.container {
+	display: grid;
+	width: 100%;
+	max-width: 80em;
+	justify-content: center;
+}
+
+#streamers-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+#streamers-list > section {
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	height: 8em;
+}

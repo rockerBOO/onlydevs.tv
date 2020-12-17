@@ -3,9 +3,10 @@
   <head>
     <title>OnlyDevs</title>
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="main.css" />
   </head>
   <body>
-    <header>
+    <header class="container">
       <h1>OnlyDevs</h1>
       <nav>
         <ul>
@@ -15,26 +16,88 @@
         </ul>
       </nav>
     </header>
-    <section id="intro">
+    <section class="container" id="intro">
       <h2>Welcome to OnlyDevs</h2>
       <p>A little intro? A little ditty?</p>
     </section>
-    <section id="current-streams">
+    <section class="container" id="current-streams">
       <h2>Current Streams</h2>
-    </section>
-    <section id="streamers">
-      <h2>Streamers</h2>
-      <section id="streamers-list">
-        <section>Streamer 1</section>
-        <section>Streamer 2</section>
-        <section>Streamer 3</section>
-        <section>Streamer 4</section>
-        <section>Streamer 5</section>
-        <section>Streamer 6</section>
-        <section>Streamer 7</section>
+      <section>
+        <!-- Add a placeholder for the Twitch embed -->
+        <div id="twitch-embed"></div>
+
+        <!-- Load the Twitch embed script -->
+        <script src="https://embed.twitch.tv/embed/v1.js"></script>
+
+        <!-- Create a Twitch.Embed object that will render within the "twitch-embed" root element. -->
+        <script type="text/javascript">
+          const access_token = "yexbgihe2nzyspx713ye28j3m72f6s";
+          const refresh_token =
+            "hl8tlrs4g4en2ek0pwgl4q03fmns79t6feyokvzjwla82li4uj";
+
+          import("./twitch-online.js").then(({ checkIfOnline }) => {
+            checkIfOnline(access_token)([
+              "ThePrimeagen",
+              "TheAltF4Stream",
+              "melkeydev",
+              "beginbot",
+              "erikdotdev",
+              "Roxstar74",
+              "teej_dv",
+              "mastermndio",
+              "bun9000",
+            ])
+              .then((online) => {
+                console.log("online users", online);
+
+                if (online.length > 0) {
+                  new Twitch.Embed("twitch-embed", {
+                    width: 854,
+                    height: 480,
+                    channel: online[0].user_id,
+                    // only needed if your site is also embedded on embed.example.com and othersite.example.com
+                    parent: ["localhost"],
+                  });
+                } else {
+                  document.getElementById("twitch-embed").innerHTML =
+                    "No one online. How dare they not be streaming.";
+                }
+              })
+              .catch((err) => {
+                // no one online or error
+                console.error("no one online or error", err);
+              });
+          });
+        </script>
       </section>
     </section>
-    <footer>
+    <section id="streamers">
+      <h2 class="container">Streamers</h2>
+      <section id="streamers-list">
+        <section>
+          <a href="https://www.twitch.tv/theprimeagen">ThePrimeagen</a>
+        </section>
+        <section>
+          <a href="https://www.twitch.tv/thealtf4stream">TheAltF4Stream</a>
+        </section>
+        <section>
+          <a href="https://www.twitch.tv/melkeydev">melkeydev</a>
+        </section>
+        <section><a href="https://www.twitch.tv/beginbot">beginbot</a></section>
+        <section>
+          <a href="https://www.twitch.tv/erikdotdev">erikdotdev</a>
+        </section>
+        <section>
+          <a href="https://www.twitch.tv/roxkstar74">Roxstar74</a>
+        </section>
+        <section><a href="https://www.twitch.tv/teej_dv">teej_dv</a></section>
+        <section>
+          <a href="https://www.twitch.tv/mastermndio">mastermndio</a>
+        </section>
+        <section><a href="https://www.twitch.tv/bun9000">bun9000</a></section>
+      </section>
+    </section>
+    <footer class="container">
       <ul>
         <li>
           <a href="https://www.twitch.tv/team/onlydevs">OnlyDevs on Twitch</a>
